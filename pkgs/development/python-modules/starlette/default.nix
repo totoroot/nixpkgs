@@ -71,6 +71,12 @@ buildPythonPackage rec {
     "tests/test_graphql.py"
   ];
 
+  disabledTests = [
+    # asserts fail due to inclusion of br in Accept-Encoding
+    "test_websocket_headers"
+    "test_request_headers"
+  ];
+
   pythonImportsCheck = [ "starlette" ];
 
   meta = with lib; {

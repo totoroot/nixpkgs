@@ -14325,7 +14325,6 @@
     github = "PhilippWoelfel";
     githubId = 19400064;
   };
-<<<<<<< HEAD
   qbit = {
     name = "Aaron Bieber";
     email = "aaron@bolddaemon.com";

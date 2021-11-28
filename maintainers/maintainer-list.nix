@@ -14325,6 +14325,7 @@
     github = "PhilippWoelfel";
     githubId = 19400064;
   };
+<<<<<<< HEAD
   qbit = {
     name = "Aaron Bieber";
     email = "aaron@bolddaemon.com";
@@ -14365,5 +14366,10 @@
     email = "martin+nixpkgs@elias.sx";
     github = "melias122";
     githubId = 1027766;
+  an-empty-string = {
+    name = "Tris Emmy Wilson";
+    email = "tris@tris.fyi";
+    github = "an-empty-string";
+    githubId = 681716;
   };
 }

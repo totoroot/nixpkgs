@@ -34,7 +34,11 @@ buildGoModule rec {
   '';
 
   meta = with lib; {
-    description = "A Helm plugin that shows a diff";
+    description = "Helm plugin that provides Amazon S3 protocol support";
+    longDescription = ''
+      Helm plugin that provides Amazon S3 protocol support. This allows you to have private or public
+      Helm chart repositories hosted on Amazon S3. The plugin supports both Helm v2 and v3.
+    '';
     homepage = "https://github.com/hypnoglow/helm-s3";
     license = licenses.mit;
     maintainers = with maintainers; [ yurrriq ];

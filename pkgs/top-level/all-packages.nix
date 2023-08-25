@@ -33265,6 +33265,8 @@ with pkgs;
 
   k8sgpt = callPackage ../applications/networking/cluster/k8sgpt { };
 
+  k8sviz = callPackage ../applications/networking/cluster/k8sviz { };
+
   k9s = callPackage ../applications/networking/cluster/k9s { };
 
   kubecm = callPackage ../applications/networking/cluster/kubecm { };

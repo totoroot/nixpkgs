@@ -2,29 +2,34 @@
 , buildGoModule
 , fetchFromGitHub
 , graphviz
+, makeBinaryWrapper
 }:
 
 buildGoModule rec {
   pname = "k8sviz";
-  version = "0.3.4";
+  version = "0.3.5";
 
   src = fetchFromGitHub {
-    owner = "mkimuram";
+    owner = "totoroot";
     repo = pname;
-    rev = "${version}";
-    hash = "sha256-UljSuaMKo3W49NfhG+bXrSZ7y/QocRT0rjVQrAUXZmg=";
+    rev = "customisable-icons-path";
+    hash = "sha256-3SfpKQWmuAo6oaesQ2NwViH2XW2EgO4RnIXUEaHYTeI=";
   };
   vendorHash = "sha256-9pFq1OPh8RbdtEyttjr2GjiRHdRfiKVwtgk0WcG0K5o=";
 
-  ldflags = [
-    "-s"
-    "-w"
-  ];
+  ldflags = [ "-s" "-w" ];
 
-  installPhase = ''
+  nativeBuildInputs = [ makeBinaryWrapper ];
+
+  installPhase = let
+    runtimeInputs = [ graphviz ];
+  in ''
     runHook preInstall
     mkdir -p $out/share
-    cp -r icons $out/bin
+    cp -r icons $out/share/
+    cp -r $GOPATH/bin $out
+    chmod +x $out/bin/k8sviz
+    wrapProgram $out/bin/k8sviz --append-flags "--icons ../share/icons" --prefix PATH : ${lib.makeBinPath runtimeInputs}
     runHook postInstall
   '';
 
@@ -35,7 +40,7 @@ buildGoModule rec {
 
   meta = with lib; {
     description = "Generate Kubernetes architecture diagrams from the actual state in a namespace ";
-    homepage = "https://github.com/mkimuram/k8sviz";
+    homepage = "https://github.com/totoroot/k8sviz";
     license = with licenses; [ asl20 ];
     maintainers = with maintainers; [ totoroot ];
   };
